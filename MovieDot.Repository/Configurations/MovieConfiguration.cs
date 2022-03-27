@@ -14,8 +14,8 @@ namespace MovieDot.Repository.Configurations
         public void Configure(EntityTypeBuilder<Movie> builder)
         {
             builder.HasMany(b => b.MovieCategories).WithOne(b => b.Movie).HasForeignKey(b => b.MovieId);
-            builder.HasMany(b => b.MovieActors).WithOne(x=> x.Movie).HasForeignKey(b => b.ActorId);
-            builder.HasMany(b => b.MovieGenres).WithOne(x=> x.Movie).HasForeignKey(b => b.GenreId);
+            builder.HasMany(b => b.MovieActors).WithOne(x=> x.Movie).HasForeignKey(b => b.MovieId);
+            builder.HasMany(b => b.MovieGenres).WithOne(x=> x.Movie).HasForeignKey(b => b.MovieId);
             builder.Property(x=>x.Title).IsRequired().HasMaxLength(100);
             builder.Property(x=>x.Descr).IsRequired().HasMaxLength(250);
             builder.Property(x => x.Url).IsRequired().HasMaxLength(int.MaxValue);

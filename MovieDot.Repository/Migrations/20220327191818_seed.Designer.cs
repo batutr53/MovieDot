@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieDot.Repository;
 
@@ -11,9 +12,10 @@ using MovieDot.Repository;
 namespace MovieDot.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220327191818_seed")]
+    partial class seed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,7 +149,7 @@ namespace MovieDot.Repository.Migrations
                         {
                             Id = 1,
                             CText = "Çok güzel bir film.",
-                            CreatedDate = new DateTime(2022, 3, 27, 22, 22, 3, 457, DateTimeKind.Local).AddTicks(7662),
+                            CreatedDate = new DateTime(2022, 3, 27, 22, 18, 17, 716, DateTimeKind.Local).AddTicks(1206),
                             Liked = 1234,
                             MovieId = 1,
                             UserId = 1
@@ -157,7 +159,7 @@ namespace MovieDot.Repository.Migrations
                             Id = 2,
                             CText = "Çok güzel bir film. Alt Yorum.",
                             CommentingId = 1,
-                            CreatedDate = new DateTime(2022, 3, 27, 22, 22, 3, 457, DateTimeKind.Local).AddTicks(7674),
+                            CreatedDate = new DateTime(2022, 3, 27, 22, 18, 17, 716, DateTimeKind.Local).AddTicks(1216),
                             Liked = 5,
                             MovieId = 1,
                             UserId = 2
@@ -314,7 +316,7 @@ namespace MovieDot.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 3, 27, 22, 22, 3, 457, DateTimeKind.Local).AddTicks(8412),
+                            CreatedDate = new DateTime(2022, 3, 27, 22, 18, 17, 716, DateTimeKind.Local).AddTicks(1769),
                             Descr = "Uzay Yolcuları, Morten Tyldum tarafından yönetilen ve senaryosu Jon Spaihts tarafından yazılan 2016 yılı ABD yapımı bilimkurgu-macera filmi. Başrollerinde Chris Pratt ve Jennifer Lawrence yer almaktadır.",
                             Image = "https://tr.web.img3.acsta.net/pictures/16/11/17/14/42/364666.jpg",
                             Imdb = 6f,
@@ -338,8 +340,6 @@ namespace MovieDot.Repository.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ActorId", "MovieId");
-
-                    b.HasIndex("MovieId");
 
                     b.ToTable("MovieActors");
 
@@ -387,8 +387,6 @@ namespace MovieDot.Repository.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("GenreId", "MovieId");
-
-                    b.HasIndex("MovieId");
 
                     b.ToTable("MovieGenres");
 
@@ -498,7 +496,7 @@ namespace MovieDot.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 3, 27, 22, 22, 3, 457, DateTimeKind.Local).AddTicks(8730),
+                            CreatedDate = new DateTime(2022, 3, 27, 22, 18, 17, 716, DateTimeKind.Local).AddTicks(2062),
                             Email = "batuhanturk34@gmail.com",
                             Image = "adminprofileimage",
                             IsActive = true,
@@ -509,7 +507,7 @@ namespace MovieDot.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 3, 27, 22, 22, 3, 457, DateTimeKind.Local).AddTicks(8734),
+                            CreatedDate = new DateTime(2022, 3, 27, 22, 18, 17, 716, DateTimeKind.Local).AddTicks(2066),
                             Email = "info@batulab.com",
                             Image = "infoprofileimage",
                             IsActive = true,
@@ -603,7 +601,7 @@ namespace MovieDot.Repository.Migrations
 
                     b.HasOne("MovieDot.Core.Models.Movie", "Movie")
                         .WithMany("MovieActors")
-                        .HasForeignKey("MovieId")
+                        .HasForeignKey("ActorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -641,7 +639,7 @@ namespace MovieDot.Repository.Migrations
 
                     b.HasOne("MovieDot.Core.Models.Movie", "Movie")
                         .WithMany("MovieGenres")
-                        .HasForeignKey("MovieId")
+                        .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

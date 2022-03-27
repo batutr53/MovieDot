@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieDot.Repository;
 
@@ -11,9 +12,10 @@ using MovieDot.Repository;
 namespace MovieDot.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220327160130_genrename")]
+    partial class genrename
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -141,27 +143,6 @@ namespace MovieDot.Repository.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Comments");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CText = "Çok güzel bir film.",
-                            CreatedDate = new DateTime(2022, 3, 27, 22, 22, 3, 457, DateTimeKind.Local).AddTicks(7662),
-                            Liked = 1234,
-                            MovieId = 1,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CText = "Çok güzel bir film. Alt Yorum.",
-                            CommentingId = 1,
-                            CreatedDate = new DateTime(2022, 3, 27, 22, 22, 3, 457, DateTimeKind.Local).AddTicks(7674),
-                            Liked = 5,
-                            MovieId = 1,
-                            UserId = 2
-                        });
                 });
 
             modelBuilder.Entity("MovieDot.Core.Models.Genre", b =>
@@ -186,21 +167,6 @@ namespace MovieDot.Repository.Migrations
                         {
                             Id = 1,
                             Name = "Aksiyon"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Bilim Kurgu"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Aile"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Romantik"
                         });
                 });
 
@@ -225,26 +191,6 @@ namespace MovieDot.Repository.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Languages");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Image = "image.jpg",
-                            Name = "Türkçe Dublaj"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Image = "image.jpg",
-                            Name = "Türkçe Altyazı"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Image = "image.jpg",
-                            Name = "Orjinal"
-                        });
                 });
 
             modelBuilder.Entity("MovieDot.Core.Models.Movie", b =>
@@ -309,24 +255,6 @@ namespace MovieDot.Repository.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Movies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(2022, 3, 27, 22, 22, 3, 457, DateTimeKind.Local).AddTicks(8412),
-                            Descr = "Uzay Yolcuları, Morten Tyldum tarafından yönetilen ve senaryosu Jon Spaihts tarafından yazılan 2016 yılı ABD yapımı bilimkurgu-macera filmi. Başrollerinde Chris Pratt ve Jennifer Lawrence yer almaktadır.",
-                            Image = "https://tr.web.img3.acsta.net/pictures/16/11/17/14/42/364666.jpg",
-                            Imdb = 6f,
-                            IsActive = true,
-                            Time = 155,
-                            Title = "Uzay Yolcuları",
-                            Url = "https://tr.web.img4.acsta.net/c_310_420/pictures/16/11/17/14/42/364666.jpg",
-                            UserId = 1,
-                            Views = 1222,
-                            Voting = 345f,
-                            Year = 2017
-                        });
                 });
 
             modelBuilder.Entity("MovieDot.Core.Models.MovieActor", b =>
@@ -339,16 +267,7 @@ namespace MovieDot.Repository.Migrations
 
                     b.HasKey("ActorId", "MovieId");
 
-                    b.HasIndex("MovieId");
-
                     b.ToTable("MovieActors");
-
-                    b.HasData(
-                        new
-                        {
-                            ActorId = 1,
-                            MovieId = 1
-                        });
                 });
 
             modelBuilder.Entity("MovieDot.Core.Models.MovieCategory", b =>
@@ -364,18 +283,6 @@ namespace MovieDot.Repository.Migrations
                     b.HasIndex("MovieId");
 
                     b.ToTable("MovieCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            CategoryId = 1,
-                            MovieId = 1
-                        },
-                        new
-                        {
-                            CategoryId = 2,
-                            MovieId = 1
-                        });
                 });
 
             modelBuilder.Entity("MovieDot.Core.Models.MovieGenre", b =>
@@ -388,16 +295,7 @@ namespace MovieDot.Repository.Migrations
 
                     b.HasKey("GenreId", "MovieId");
 
-                    b.HasIndex("MovieId");
-
                     b.ToTable("MovieGenres");
-
-                    b.HasData(
-                        new
-                        {
-                            GenreId = 1,
-                            MovieId = 1
-                        });
                 });
 
             modelBuilder.Entity("MovieDot.Core.Models.Part", b =>
@@ -431,24 +329,6 @@ namespace MovieDot.Repository.Migrations
                     b.HasIndex("MovieId");
 
                     b.ToTable("Parts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            LanguageId = 1,
-                            MovieId = 1,
-                            Name = "Part1 ",
-                            Url = "https://youtu.be/8GKyQ1S5594"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            LanguageId = 2,
-                            MovieId = 1,
-                            Name = "Part2",
-                            Url = "https://youtu.be/8GKyQ1S5594"
-                        });
                 });
 
             modelBuilder.Entity("MovieDot.Core.Models.User", b =>
@@ -493,30 +373,6 @@ namespace MovieDot.Repository.Migrations
                     b.HasIndex("UserRoleId");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(2022, 3, 27, 22, 22, 3, 457, DateTimeKind.Local).AddTicks(8730),
-                            Email = "batuhanturk34@gmail.com",
-                            Image = "adminprofileimage",
-                            IsActive = true,
-                            Password = "admin",
-                            UserName = "admin",
-                            UserRoleId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(2022, 3, 27, 22, 22, 3, 457, DateTimeKind.Local).AddTicks(8734),
-                            Email = "info@batulab.com",
-                            Image = "infoprofileimage",
-                            IsActive = true,
-                            Password = "info",
-                            UserName = "info",
-                            UserRoleId = 2
-                        });
                 });
 
             modelBuilder.Entity("MovieDot.Core.Models.UserRole", b =>
@@ -535,28 +391,6 @@ namespace MovieDot.Repository.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Admin"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Moderatör"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "VİP"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Üye"
-                        });
                 });
 
             modelBuilder.Entity("MovieDot.Core.Models.Comment", b =>
@@ -603,7 +437,7 @@ namespace MovieDot.Repository.Migrations
 
                     b.HasOne("MovieDot.Core.Models.Movie", "Movie")
                         .WithMany("MovieActors")
-                        .HasForeignKey("MovieId")
+                        .HasForeignKey("ActorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -641,7 +475,7 @@ namespace MovieDot.Repository.Migrations
 
                     b.HasOne("MovieDot.Core.Models.Movie", "Movie")
                         .WithMany("MovieGenres")
-                        .HasForeignKey("MovieId")
+                        .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
