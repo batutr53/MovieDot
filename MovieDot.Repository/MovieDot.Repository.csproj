@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MovieDot.Core\MovieDot.Core.csproj" />
+    <ProjectReference Include="..\MovieDot.Shared\MovieDot.Shared.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,6 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>..\xmlDoc\MovieDot.Shared.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MovieDot.Service\MovieDot.Service.csproj" />
+    <ProjectReference Include="..\MovieDot.Shared\MovieDot.Shared.csproj" />
   </ItemGroup>
 
 </Project>
