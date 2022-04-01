@@ -6,7 +6,7 @@ using MovieDot.Core.Models;
 
 namespace MovieDot.API.Filters
 {
-    public class NotFoundFilter<T> : IAsyncActionFilter where T : BaseEntity
+    public class NotFoundFilter<T> : IAsyncActionFilter where T: Entity
     {   
         private readonly IService<T> _service;
 

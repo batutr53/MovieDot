@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace MovieDot.Core.Models
 {
-    public class Category: Entity
+    public class Entity
     {
-        public string Name { get; set; }
-        public List<MovieCategory> MovieCategories { get; set; }
+        public int Id { get; set; }
     }
 }

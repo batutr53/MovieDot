@@ -15,4 +15,8 @@
     <ProjectReference Include="..\MovieDot.Repository\MovieDot.Repository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Validations\" />
+  </ItemGroup>
+
 </Project>

@@ -14,6 +14,7 @@ using MovieDot.Shared;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 using System.Text;
+using System.Text.Json.Serialization;
 
 //cors
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -33,6 +34,8 @@ builder.Services.AddCors(options =>
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.SuppressModelStateInvalidFilter = true;
@@ -88,6 +91,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCustomException();
 app.UseCors(MyAllowSpecificOrigins);
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

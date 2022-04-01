@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieDot.Core.Models
+namespace MovieDot.Core.DTOs.DtoCategory
 {
-    public class Category: Entity
+    public class CategoryDto:BaseDto
     {
         public string Name { get; set; }
-        public List<MovieCategory> MovieCategories { get; set; }
     }
 }

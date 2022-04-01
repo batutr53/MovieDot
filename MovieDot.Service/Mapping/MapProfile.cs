@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MovieDot.Core.DTOs.DtoCategory;
+using MovieDot.Core.DTOs.DtoMovie;
+using MovieDot.Core.DTOs.DtoUser;
+using MovieDot.Core.Models;
 
 namespace MovieDot.Service.Mapping
 {
@@ -11,7 +10,14 @@ namespace MovieDot.Service.Mapping
     {
         public MapProfile()
         {
+            CreateMap<User, UserRegisterDto>().ReverseMap();
 
+            CreateMap<Category, CategoryDto>().ReverseMap();
+            CreateMap<Movie, MovieDto>().ReverseMap();
+            CreateMap<MovieDto, MovieWithCategoryDto>().ReverseMap();
+            CreateMap<Movie, MovieWithCategoryDto>().ReverseMap();
+            CreateMap<Movie, MovieWithCategoryDto>().ForMember(dto => dto.Category, opt => opt.MapFrom(x => x.MovieCategories.Select(y => y.Category).ToList()));
+            CreateMap<User, UserAuthenticateDto>();
         }
     }
 }
