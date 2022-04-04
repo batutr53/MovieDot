@@ -20,6 +20,7 @@ namespace MovieDot.Service.Mapping
 
             CreateMap<Category, CategoryDto>();
             CreateMap<Movie, MovieDto>();
+            CreateMap<Movie, MovieSearchDto>();
             CreateMap<Genre, GenreDto>();
             CreateMap<Actor, ActorDto>();
             CreateMap<User, UserDto>();

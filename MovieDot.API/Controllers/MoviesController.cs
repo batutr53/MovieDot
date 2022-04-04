@@ -32,5 +32,11 @@ namespace MovieDot.API.Controllers
         {
             return CreateActionResult(await _movieService.GetMovieById(movieId));
         }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> MovieSearch(string movieName)
+        {
+            return CreateActionResult(await _movieService.MovieSearch(movieName));
+        }
     }
 }

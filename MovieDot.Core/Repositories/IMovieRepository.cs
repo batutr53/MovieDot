@@ -6,6 +6,7 @@ namespace MovieDot.Core.Repositories
     {
         Task<List<Movie>> GetMovieWithCategory(int categoryId);
         Task<List<Movie>> GetMovieById(int movieId);
+        Task<List<Movie>> MovieSearch(string movieName);
  
     }
 }

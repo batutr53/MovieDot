@@ -25,5 +25,10 @@ namespace MovieDot.Repository.Repositories
         {
             return await _context.Movies.Where(c => c.MovieCategories.Where(ca => ca.CategoryId == categoryId).Any()).Include(x => x.MovieCategories).ThenInclude(a => a.Category).ToListAsync();
         }
+
+        public async Task<List<Movie>> MovieSearch(string movieName)
+        {
+            return await _context.Movies.Where(m=>m.Title.Contains(movieName)||m.MovieCategories.Where(c=>c.Category.Name==movieName).Any()).Include(m=>m.MovieCategories).ThenInclude(c=>c.Category).ToListAsync();
+        }
     }
 }
