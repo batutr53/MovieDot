@@ -19,16 +19,16 @@ namespace MovieDot.API.Controllers
         }
 
         [HttpPost("[action]")]
-        public IActionResult Authenticate(UserAuthenticateDto user)
+        public async Task<IActionResult> Authenticate(UserAuthenticateDto user)
         {
-            var users = _userService.Authenticate(user.Email, user.Password);
+            var users = await _userService.Authenticate(user.Email, user.Password);
             return Ok(users);
         }
 
         [HttpPost("[action]")]
-        public IActionResult Register(UserRegisterDto userRegister)
+        public async Task<IActionResult> Register(UserRegisterDto userRegister)
         {
-            bool userBool = _userService.IsUniqueUser(userRegister.Email);
+            bool userBool = await _userService.IsUniqueUser(userRegister.Email);
             if (!userBool)
             {
                 return BadRequest(new { message = "Email zaten mevcut." });

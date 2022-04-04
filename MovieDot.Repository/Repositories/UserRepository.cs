@@ -21,7 +21,7 @@ namespace MovieDot.Repository.Repositories
             _appSettings = appSettings.Value;
         }
 
-        public User Authenticate(string mail, string password)
+        public async Task<User> Authenticate(string mail, string password)
         {
             var user = _context.Users.SingleOrDefault(x => x.Email == mail && x.Password == password);
             if (user == null) {
@@ -48,9 +48,9 @@ namespace MovieDot.Repository.Repositories
             return user;
         }
 
-        public bool IsUniqueUser(string mail)
+        public async Task<bool> IsUniqueUser(string mail)
         {
-            var user = _context.Users.SingleOrDefault(x => x.Email == mail);
+            var user = _context.Users.FirstOrDefault(x => x.Email == mail);
             if (user == null)
             {
                 return true;
@@ -58,7 +58,7 @@ namespace MovieDot.Repository.Repositories
             return false;
         }
 
-        public User Register(string userName,string mail, string password)
+        public async Task<User> Register(string userName,string mail, string password)
         {
             User user = new User()
             {   
@@ -67,7 +67,7 @@ namespace MovieDot.Repository.Repositories
                 Password = password,
                 UserRoleId = 3,
             };
-            _context.Users.Add(user);
+            await _context.Users.AddAsync(user);
             return user;
         }
     }

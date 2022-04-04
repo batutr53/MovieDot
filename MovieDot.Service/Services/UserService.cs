@@ -24,21 +24,21 @@ namespace MovieDot.Service.Services
             _unitOfWork = unitOfWork;
         }
 
-        public User Authenticate(string mail, string password)
+        public async Task<User> Authenticate(string mail, string password)
         {
-            var user = _userRepository.Authenticate(mail, password);
+            var user = await _userRepository.Authenticate(mail, password);
             return user;
         }
 
-        public bool IsUniqueUser(string mail)
+        public async Task<bool> IsUniqueUser(string mail)
         {
-           return _userRepository.IsUniqueUser(mail);
+           return await _userRepository.IsUniqueUser(mail);
         }
 
-        public User Register(string userName,string mail, string password)
+        public async Task<User> Register(string userName,string mail, string password)
         {
-            var user = _userRepository.Register(userName,mail,password);
-            _unitOfWork.Commit();
+            var user = await _userRepository.Register(userName,mail,password);
+            await _unitOfWork.CommitAsync();
             return user;
         }
     }

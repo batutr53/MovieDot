@@ -9,8 +9,8 @@ namespace MovieDot.Core.Repositories
 {
     public interface IUserRepository: IGenericRepository<User>
     {
-        bool IsUniqueUser(string mail);
-        User Authenticate(string mail, string password);
-        User Register(string userName,string mail, string password);
+        Task<bool> IsUniqueUser(string mail);
+        Task<User>Authenticate(string mail, string password);
+        Task<User> Register(string userName,string mail, string password);
     }
 }

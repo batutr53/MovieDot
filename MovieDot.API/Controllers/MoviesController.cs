@@ -27,6 +27,10 @@ namespace MovieDot.API.Controllers
             return CreateActionResult(await _movieService.GetMovieWithCategory(categoryId));
         }
 
-         
+        [HttpGet("{movieId}")]         
+        public async Task<IActionResult> GetMovieById(int movieId)
+        {
+            return CreateActionResult(await _movieService.GetMovieById(movieId));
+        }
     }
 }

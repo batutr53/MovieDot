@@ -10,7 +10,16 @@ namespace MovieDot.Repository.Repositories
         {
         }
 
-    
+        public async Task<List<Movie>> GetMovieById(int movieId)
+        {
+            return await _context.Movies.Where(x => x.Id == movieId)
+                 .Include(mc => mc.MovieCategories).ThenInclude(c => c.Category)
+                 .Include(ma => ma.MovieActors).ThenInclude(a => a.Actor)
+                 .Include(mg => mg.MovieGenres).ThenInclude(g => g.Genre)
+                 .Include(c=>c.Comments).ThenInclude(u=>u.User)
+                 .Include(p=>p.Parts).ThenInclude(l=>l.Language)
+                 .ToListAsync(); 
+        }
 
         public async Task<List<Movie>> GetMovieWithCategory(int categoryId)
         {

@@ -19,6 +19,13 @@ namespace MovieDot.Service.Services
             _mapper = mapper;
         }
 
+        public async Task<CustomResponseDto<List<MovieWithAllDto>>> GetMovieById(int movieId)
+        {
+            var movies = await _movieRepository.GetMovieById(movieId);
+            var moviesDto = _mapper.Map<List<MovieWithAllDto>>(movies);
+            return CustomResponseDto<List<MovieWithAllDto>>.Success(200,moviesDto);
+        }
+
         public async Task<CustomResponseDto<List<MovieWithCategoryDto>>> GetMovieWithCategory(int categoryId)
         {
             var movies = await _movieRepository.GetMovieWithCategory(categoryId);

@@ -7,6 +7,6 @@ namespace MovieDot.Core.Services
     public interface IMovieService : IService<Movie>
     {
         Task<CustomResponseDto<List<MovieWithCategoryDto>>> GetMovieWithCategory(int categoryId);
-     
+        Task<CustomResponseDto<List<MovieWithAllDto>>> GetMovieById(int movieId);
     }
 }
