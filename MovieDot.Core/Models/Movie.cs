@@ -24,7 +24,7 @@ namespace MovieDot.Core.Models
         public List<Comment> Comments { get; set; }
         public List<MovieCategory> MovieCategories { get; set; }
         public List<MovieGenre> MovieGenres { get; set; }
-        public List<MovieActor> MovieActors { get; set; }
+        public List<MovieActor> MovieActors { get; set; } = new();
       
        
     }

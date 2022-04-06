@@ -21,6 +21,8 @@ namespace MovieDot.Service.Mapping
             CreateMap<Category, CategoryDto>();
             CreateMap<Movie, MovieDto>();
             CreateMap<Movie, MovieSearchDto>();
+            CreateMap<Movie, MoviePostDto>().ReverseMap();
+            CreateMap<MovieActor, MovieActorDto>().ReverseMap();
             CreateMap<Genre, GenreDto>();
             CreateMap<Actor, ActorDto>();
             CreateMap<User, UserDto>();
@@ -35,7 +37,9 @@ namespace MovieDot.Service.Mapping
             CreateMap<Movie, MovieWithAllDto>().ForMember(dto => dto.Categories, opt => opt.MapFrom(mc => mc.MovieCategories.Select(c => c.Category).ToList()))
                                               .ForMember(dto => dto.Actors, opt => opt.MapFrom(ma => ma.MovieActors.Select(a => a.Actor).ToList()))
                                               .ForMember(dto => dto.Genres, opt => opt.MapFrom(mg => mg.MovieGenres.Select(g => g.Genre).ToList()));
-
+            CreateMap<Movie, MoviePostDto>().ForMember(dto => dto.Categories, opt => opt.MapFrom(mc => mc.MovieCategories.Select(c => c.Category).ToList()))
+                                             .ForMember(dto => dto.Actors, opt => opt.MapFrom(ma => ma.MovieActors.Select(a => a.Actor).ToList()))
+                                             .ForMember(dto => dto.Genres, opt => opt.MapFrom(mg => mg.MovieGenres.Select(g => g.Genre).ToList()));
 
 
             CreateMap<Genre, GenreDto>();

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MovieDot.Core.DTOs.DtoGenre
 {
-    public class GenreDto
+    public class GenreDto:BaseDto
     {
         public string Name { get; set; }
     }

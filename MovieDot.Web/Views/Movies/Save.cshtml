@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Create";
+}
+@model MoviePostDto
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Save" method="post" asp-controller="Movies">
+            <div class="form-group">
+                <label asp-for="Title"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="Url"></label>
+                <input asp-for="Url" class="form-control" />
+                <span asp-validation-for="Url" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="Descr"></label>
+                <input asp-for="Descr" class="form-control" />
+                <span asp-validation-for="Descr" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="Image"></label>
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="Time"></label>
+                <input asp-for="Time" class="form-control" />
+                <span asp-validation-for="Time" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="Year"></label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="Imdb"></label>
+                <input asp-for="Imdb" class="form-control" />
+                <span asp-validation-for="Imdb" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="UserId"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+        
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

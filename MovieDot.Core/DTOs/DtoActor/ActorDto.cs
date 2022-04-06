@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MovieDot.Core.DTOs.DtoActor
 {
-    public class ActorDto
+    public class ActorDto:BaseDto
     {
         public string Name { get; set; }
         public string Image { get; set; }

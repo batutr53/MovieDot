@@ -14,6 +14,8 @@ namespace MovieDot.Core.DTOs.DtoMovie
         public string Image { get; set; }
         public float Imdb { get; set; }
         public int Views { get; set; }
-        public string UserUserName { get; set; }
+        public string Descr { get; set; }
+        public bool IsActive { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }

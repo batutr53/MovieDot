@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace MovieDot.Core.Models
 {
-    public class Genre
+    public class Genre: Entity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
-        public List<MovieGenre> MovieGenres { get; set; }
+        public List<MovieGenre> MovieGenres { get; set; } = new();
 
     }
 }

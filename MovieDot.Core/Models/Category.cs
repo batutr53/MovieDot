@@ -9,6 +9,6 @@ namespace MovieDot.Core.Models
     public class Category: Entity
     {
         public string Name { get; set; }
-        public List<MovieCategory> MovieCategories { get; set; }
+        public List<MovieCategory> MovieCategories { get; set; } = new();
     }
 }
