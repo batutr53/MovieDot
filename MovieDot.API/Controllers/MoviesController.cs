@@ -53,15 +53,7 @@ namespace MovieDot.API.Controllers
         public async Task<IActionResult> PostMovie(MoviePostDto movieDto)
         {
             var movie = await _movieService.AddAsync(_mapper.Map<Movie>(movieDto));
-            movie.MovieActors.Add(new ()
-            { 
-                ActorId = movieDto.Actors.Select(x=>x.Id).SingleOrDefault(),
-                MovieId = movie.Id
-            });
-
             var movieDtos= _mapper.Map<MoviePostDto>(movie);
-       
-           
             return CreateActionResult(CustomResponseDto<MoviePostDto>.Success(204,movieDtos));
         }
 

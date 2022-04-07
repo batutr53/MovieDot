@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieDot.Core.DTOs.DtoMovie
+namespace MovieDot.Core.DTOs.DtoActor
 {
     public class MovieActorDto
     {
-        public int MovieId { get; set; }
         public int ActorId { get; set; }
     }
 }

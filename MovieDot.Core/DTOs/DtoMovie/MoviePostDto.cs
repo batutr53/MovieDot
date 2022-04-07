@@ -27,9 +27,10 @@ namespace MovieDot.Core.DTOs.DtoMovie
         public bool IsActive { get; set; } = false;
         public int UserId { get; set; }
 
-        public List<CategoryDto> Categories { get; set; }
+        public List<PartPostDto> Parts { get; set; } = new();
+        public List<MovieCategoryDto> MovieCategories { get; set; } = new();
         public List<MovieActorDto> MovieActors { get; set; } = new();
-        public List<GenreDto> Genres { get; set; }
-        public List<ActorDto> Actors { get; set; }
+        public List<MovieGenreDto> MovieGenres { get; set; } = new();
+    
     }
 }
