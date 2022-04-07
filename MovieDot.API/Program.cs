@@ -67,6 +67,7 @@ builder.Services.AddAuthentication(x =>
 });
 
 builder.Services.AddScoped(typeof(NotFoundFilter<>));
+builder.Services.AddScoped(typeof(NotFoundFilterBase<>));
 builder.Services.AddAutoMapper(typeof(MapProfile));
 //Db
 builder.Services.AddDbContext<AppDbContext>(x =>

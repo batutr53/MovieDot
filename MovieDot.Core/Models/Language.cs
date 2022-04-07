@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MovieDot.Core.Models
 {
-    public class Language
+    public class Language: Entity
     {
         public int Id { get; set; }
         public string Name { get; set; }

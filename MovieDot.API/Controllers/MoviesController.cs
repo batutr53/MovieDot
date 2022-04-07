@@ -64,5 +64,14 @@ namespace MovieDot.API.Controllers
            
             return CreateActionResult(CustomResponseDto<MoviePostDto>.Success(204,movieDtos));
         }
+
+        [ServiceFilter(typeof(NotFoundFilterBase<Movie>))]
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Remove(int id)
+        {
+            var movie = await _movieService.GetByIdAsync(id);
+            await _movieService.RemoveAsync(movie);
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(200));
+        }
     }
 }
