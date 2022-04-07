@@ -10,7 +10,7 @@ namespace MovieDot.Repository.Repositories
         {
         }
 
-        public async Task<List<Movie>> GetAllMovie()
+        public async Task<List<Movie>> GetAllMovie(int page, int pageSize)
         {
             return await _context.Movies
                  .Include(mc => mc.MovieCategories).ThenInclude(c => c.Category)
@@ -18,7 +18,7 @@ namespace MovieDot.Repository.Repositories
                  .Include(mg => mg.MovieGenres).ThenInclude(g => g.Genre)
                  .Include(c => c.Comments).ThenInclude(u => u.User)
                  .Include(p => p.Parts).ThenInclude(l => l.Language)
-                 .AsNoTracking()
+                 .AsNoTracking().Skip((page - 1)*pageSize).Take(pageSize)
                  .ToListAsync();
         }
 
@@ -34,9 +34,14 @@ namespace MovieDot.Repository.Repositories
                  .ToListAsync(); 
         }
 
-        public async Task<List<Movie>> GetMovieWithCategory(int categoryId)
+        public async Task<List<Movie>> GetMovieWithCategory(int categoryId, int page, int pageSize)
         {
-            return await _context.Movies.Where(c => c.MovieCategories.Where(ca => ca.CategoryId == categoryId).Any()).Include(x => x.MovieCategories).ThenInclude(a => a.Category).AsNoTracking().ToListAsync();
+            return await _context.Movies.Where(c => c.MovieCategories.Where(ca => ca.CategoryId == categoryId).Any())
+                .Include(x => x.MovieCategories)
+                .ThenInclude(a => a.Category)
+                .AsNoTracking().Skip((page - 1) * pageSize).Take(pageSize)
+                .ToListAsync();
+            
         }
 
         public async Task<List<Movie>> MovieSearch(string movieName)

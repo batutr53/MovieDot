@@ -26,15 +26,17 @@ namespace MovieDot.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllMovie()
+        public async Task<IActionResult> GetAllMovie(int page)
         {
-            return CreateActionResult(await _movieService.GetAllMovie());
+            const int pageSize = 10;
+            return CreateActionResult(await _movieService.GetAllMovie(page,pageSize));
         }
        
         [HttpGet("category/{categoryId}")]
-        public async Task<IActionResult> GetMovieWithCategory(int categoryId)
+        public async Task<IActionResult> GetMovieWithCategory(int categoryId, int page)
         {
-            return CreateActionResult(await _movieService.GetMovieWithCategory(categoryId));
+            const int pageSize = 10;
+            return CreateActionResult(await _movieService.GetMovieWithCategory(categoryId, page, pageSize));
         }
 
         [HttpGet("{movieId}")]         
@@ -55,6 +57,14 @@ namespace MovieDot.API.Controllers
             var movie = await _movieService.AddAsync(_mapper.Map<Movie>(movieDto));
             var movieDtos= _mapper.Map<MoviePostDto>(movie);
             return CreateActionResult(CustomResponseDto<MoviePostDto>.Success(204,movieDtos));
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(MoviePostDto movieUpdateDto)
+        {
+            await _movieService.UpdateAsync(_mapper.Map<Movie>(movieUpdateDto));
+           
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 
         [ServiceFilter(typeof(NotFoundFilterBase<Movie>))]

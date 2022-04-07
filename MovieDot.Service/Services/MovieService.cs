@@ -19,9 +19,9 @@ namespace MovieDot.Service.Services
             _mapper = mapper;
         }
 
-        public async Task<CustomResponseDto<List<MovieWithAllDto>>> GetAllMovie()
+        public async Task<CustomResponseDto<List<MovieWithAllDto>>> GetAllMovie(int page, int pageSize)
         {
-          var movies = await _movieRepository.GetAllMovie();
+          var movies = await _movieRepository.GetAllMovie(page, pageSize);
           var moviesDto= _mapper.Map<List<MovieWithAllDto>>(movies);
             return CustomResponseDto<List<MovieWithAllDto>>.Success(200,moviesDto);
         }
@@ -33,9 +33,9 @@ namespace MovieDot.Service.Services
             return CustomResponseDto<List<MovieWithAllDto>>.Success(200,moviesDto);
         }
 
-        public async Task<CustomResponseDto<List<MovieWithCategoryDto>>> GetMovieWithCategory(int categoryId)
+        public async Task<CustomResponseDto<List<MovieWithCategoryDto>>> GetMovieWithCategory(int categoryId, int page, int pageSize)
         {
-            var movies = await _movieRepository.GetMovieWithCategory(categoryId);
+            var movies = await _movieRepository.GetMovieWithCategory(categoryId, page, pageSize);
             var moviesDto = _mapper.Map<List<MovieWithCategoryDto>>(movies);
             return CustomResponseDto<List<MovieWithCategoryDto>>.Success(200, moviesDto);
         }

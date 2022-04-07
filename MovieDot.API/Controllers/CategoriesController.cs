@@ -22,9 +22,10 @@ namespace MovieDot.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(int page)
         {
-            var categories = await _categoryService.GetAllAsync();
+            const int pageSize = 10;
+            var categories = await _categoryService.GetAllAsync(page,pageSize);
             var categoriesDto = _mapper.Map<List<CategoryDto>>(categories.ToList());
             return CreateActionResult(CustomResponseDto<List<CategoryDto>>.Success(200, categoriesDto));
         }

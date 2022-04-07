@@ -41,9 +41,9 @@ namespace MovieDot.Service.Services
            return await _repository.AnyAsync(expression);
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync(int page, int pageSize)
         {
-            return await _repository.GetAll().ToListAsync();
+            return await _repository.GetAll(page, pageSize).ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(int id)

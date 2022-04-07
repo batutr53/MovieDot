@@ -24,9 +24,10 @@ namespace MovieDot.API.Controllers
         }
         
         [HttpGet]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(int page)
         {
-            var languages = await _languageService.GetAllAsync();
+            const int pageSize = 10;
+            var languages = await _languageService.GetAllAsync(page,pageSize);
             var languagesDto = _mapper.Map<List<LanguageDto>>(languages.ToList());
             return CreateActionResult(CustomResponseDto<List<LanguageDto>>.Success(200,languagesDto));
         }

@@ -34,9 +34,9 @@ namespace MovieDot.Repository.Repositories
             return await _dbSet.AnyAsync(expression);
         }
 
-        public IQueryable<T> GetAll()
+        public IQueryable<T> GetAll(int page, int pageSize)
         {
-            return _dbSet.AsNoTracking().AsQueryable();
+            return _dbSet.AsNoTracking().AsQueryable().Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         public async Task<T> GetByIdAsync(int id)
