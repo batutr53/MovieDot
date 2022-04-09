@@ -21,14 +21,24 @@ namespace MovieDot.API.Controllers
             _actorService = actorService;
             _mapper = mapper;
         }
+
         [HttpGet]
-        public async Task<IActionResult> All(int page)
+        public async Task<IActionResult> All()
+        {
+            var actors = await _actorService.AllAsync();
+            var actorsDto = _mapper.Map<List<ActorDto>>(actors.ToList());
+            return CreateActionResult(CustomResponseDto<List<ActorDto>>.Success(200, actorsDto));
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllPage(int page)
         {
             const int pageSize = 10;
             var actors = await _actorService.GetAllAsync(page,pageSize);
             var actorsDto = _mapper.Map<List<ActorDto>>(actors.ToList());
             return CreateActionResult(CustomResponseDto<List<ActorDto>>.Success(200, actorsDto));
         }
+
         [ServiceFilter(typeof(NotFoundFilter<Actor>))]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)

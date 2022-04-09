@@ -2,6 +2,7 @@
 using MovieDot.Core.Repositories;
 using MovieDot.Core.Services;
 using MovieDot.Core.UnitOfWorks;
+using MovieDot.Service.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,11 @@ namespace MovieDot.Service.Services
             return entities;
         }
 
+        public async Task<IEnumerable<T>> AllAsync()
+        {
+            return await _repository.All().ToListAsync();
+        }
+
         public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
         {
            return await _repository.AnyAsync(expression);
@@ -48,7 +54,13 @@ namespace MovieDot.Service.Services
 
         public async Task<T> GetByIdAsync(int id)
         {
-           return await _repository.GetByIdAsync(id);
+            return await _repository.GetByIdAsync(id);
+            /* var hasId = await _repository.GetByIdAsync(id);
+               if (hasId == null)
+               {
+                   throw new NotFoundException($"{typeof(T).Name}({id}) not Found");
+               }
+               return hasId;*/
         }
 
         public async Task RemoveAsync(T entity)

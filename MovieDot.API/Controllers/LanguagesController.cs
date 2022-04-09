@@ -23,13 +23,22 @@ namespace MovieDot.API.Controllers
             
         }
         
+     
         [HttpGet]
-        public async Task<IActionResult> All(int page)
+        public async Task<IActionResult> All()
+        {
+            var languages = await _languageService.AllAsync();
+            var languagesDto = _mapper.Map<List<LanguageDto>>(languages.ToList());
+            return CreateActionResult(CustomResponseDto<List<LanguageDto>>.Success(200, languagesDto));
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllPage(int page)
         {
             const int pageSize = 10;
-            var languages = await _languageService.GetAllAsync(page,pageSize);
+            var languages = await _languageService.GetAllAsync(page, pageSize);
             var languagesDto = _mapper.Map<List<LanguageDto>>(languages.ToList());
-            return CreateActionResult(CustomResponseDto<List<LanguageDto>>.Success(200,languagesDto));
+            return CreateActionResult(CustomResponseDto<List<LanguageDto>>.Success(200, languagesDto));
         }
 
         [ServiceFilter(typeof(NotFoundFilter<Language>))]

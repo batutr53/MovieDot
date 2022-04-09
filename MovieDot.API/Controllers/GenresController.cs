@@ -22,14 +22,21 @@ namespace MovieDot.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll(int page)
+        public async Task<IActionResult> All()
         {
-            const int pageSize = 10;
-            var genres = await _genreService.GetAllAsync(page,pageSize);
+            var genres = await _genreService.AllAsync();
             var genresDto = _mapper.Map<List<GenreDto>>(genres.ToList());
             return CreateActionResult(CustomResponseDto<List<GenreDto>>.Success(200, genresDto));
         }
-        
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllPage(int page)
+        {
+            const int pageSize = 10;
+            var genres = await _genreService.GetAllAsync(page, pageSize);
+            var genresDto = _mapper.Map<List<GenreDto>>(genres.ToList());
+            return CreateActionResult(CustomResponseDto<List<GenreDto>>.Success(200, genresDto));
+        }
+
         [ServiceFilter(typeof(NotFoundFilter<Genre>))]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)

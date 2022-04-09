@@ -29,6 +29,11 @@ namespace MovieDot.Repository.Repositories
             await _dbSet.AddRangeAsync(entities);
         }
 
+        public IQueryable<T> All()
+        {
+            return _dbSet.AsNoTracking().AsQueryable();
+        }
+
         public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
         {
             return await _dbSet.AnyAsync(expression);

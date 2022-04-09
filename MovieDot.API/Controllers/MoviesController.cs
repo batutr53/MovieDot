@@ -26,8 +26,9 @@ namespace MovieDot.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllMovie(int page)
+        public async Task<IActionResult> GetAllMovie()
         {
+           int page = 1;
             const int pageSize = 10;
             return CreateActionResult(await _movieService.GetAllMovie(page,pageSize));
         }

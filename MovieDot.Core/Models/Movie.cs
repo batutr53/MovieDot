@@ -13,10 +13,11 @@ namespace MovieDot.Core.Models
         public string Descr { get; set; }
         public string Image { get; set; }
         public int? Time { get; set; }
-        public float? Voting { get; set; } = 0;
+        public double? Voting { get; set; }
         public int? Year { get; set; }
-        public float? Imdb { get; set; } = 0;
+        public double? Imdb { get; set; }
         public int? Views { get; set; }
+        public bool IsPopular { get; set; }
         public bool IsActive { get; set; } = false;
         public int UserId { get; set; }
         public User User { get; set; }
