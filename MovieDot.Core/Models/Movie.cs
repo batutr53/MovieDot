@@ -13,7 +13,6 @@ namespace MovieDot.Core.Models
         public string Descr { get; set; }
         public string Image { get; set; }
         public int? Time { get; set; }
-        public double? Voting { get; set; }
         public int? Year { get; set; }
         public double? Imdb { get; set; }
         public int? Views { get; set; }
@@ -25,8 +24,8 @@ namespace MovieDot.Core.Models
         public List<Comment> Comments { get; set; }
         public List<MovieCategory> MovieCategories { get; set; }
         public List<MovieGenre> MovieGenres { get; set; }
-        public List<MovieActor> MovieActors { get; set; } = new();
-      
-       
+        public List<MovieActor> MovieActors { get; set; }
+
+
     }
 }

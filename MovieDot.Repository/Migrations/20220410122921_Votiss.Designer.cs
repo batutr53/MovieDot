@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieDot.Repository;
 
@@ -11,9 +12,10 @@ using MovieDot.Repository;
 namespace MovieDot.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220410122921_Votiss")]
+    partial class Votiss
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,7 +149,7 @@ namespace MovieDot.Repository.Migrations
                         {
                             Id = 1,
                             CText = "Çok güzel bir film.",
-                            CreatedDate = new DateTime(2022, 4, 10, 15, 43, 44, 497, DateTimeKind.Local).AddTicks(1013),
+                            CreatedDate = new DateTime(2022, 4, 10, 15, 29, 21, 373, DateTimeKind.Local).AddTicks(2976),
                             Liked = 1234,
                             MovieId = 1,
                             UserId = 1
@@ -157,7 +159,7 @@ namespace MovieDot.Repository.Migrations
                             Id = 2,
                             CText = "Çok güzel bir film. Alt Yorum.",
                             CommentingId = 1,
-                            CreatedDate = new DateTime(2022, 4, 10, 15, 43, 44, 497, DateTimeKind.Local).AddTicks(1022),
+                            CreatedDate = new DateTime(2022, 4, 10, 15, 29, 21, 373, DateTimeKind.Local).AddTicks(2986),
                             Liked = 5,
                             MovieId = 1,
                             UserId = 2
@@ -314,7 +316,7 @@ namespace MovieDot.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 4, 10, 15, 43, 44, 497, DateTimeKind.Local).AddTicks(1643),
+                            CreatedDate = new DateTime(2022, 4, 10, 15, 29, 21, 373, DateTimeKind.Local).AddTicks(3621),
                             Descr = "Uzay Yolcuları, Morten Tyldum tarafından yönetilen ve senaryosu Jon Spaihts tarafından yazılan 2016 yılı ABD yapımı bilimkurgu-macera filmi. Başrollerinde Chris Pratt ve Jennifer Lawrence yer almaktadır.",
                             Image = "https://tr.web.img3.acsta.net/pictures/16/11/17/14/42/364666.jpg",
                             Imdb = 6.0,
@@ -398,6 +400,21 @@ namespace MovieDot.Repository.Migrations
                             GenreId = 1,
                             MovieId = 1
                         });
+                });
+
+            modelBuilder.Entity("MovieDot.Core.Models.MovieVoting", b =>
+                {
+                    b.Property<int>("VotingId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
+
+                    b.HasKey("VotingId", "MovieId");
+
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("MovieVotings");
                 });
 
             modelBuilder.Entity("MovieDot.Core.Models.Part", b =>
@@ -498,7 +515,7 @@ namespace MovieDot.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 4, 10, 15, 43, 44, 497, DateTimeKind.Local).AddTicks(1990),
+                            CreatedDate = new DateTime(2022, 4, 10, 15, 29, 21, 373, DateTimeKind.Local).AddTicks(3896),
                             Email = "batuhanturk34@gmail.com",
                             Image = "adminprofileimage",
                             IsActive = true,
@@ -509,7 +526,7 @@ namespace MovieDot.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 4, 10, 15, 43, 44, 497, DateTimeKind.Local).AddTicks(1996),
+                            CreatedDate = new DateTime(2022, 4, 10, 15, 29, 21, 373, DateTimeKind.Local).AddTicks(3901),
                             Email = "info@batulab.com",
                             Image = "infoprofileimage",
                             IsActive = true,
@@ -557,6 +574,25 @@ namespace MovieDot.Repository.Migrations
                             Id = 4,
                             Name = "Üye"
                         });
+                });
+
+            modelBuilder.Entity("MovieDot.Core.Models.Voting", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Vote")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Votings");
                 });
 
             modelBuilder.Entity("MovieDot.Core.Models.Comment", b =>
@@ -650,6 +686,25 @@ namespace MovieDot.Repository.Migrations
                     b.Navigation("Movie");
                 });
 
+            modelBuilder.Entity("MovieDot.Core.Models.MovieVoting", b =>
+                {
+                    b.HasOne("MovieDot.Core.Models.Movie", "Movie")
+                        .WithMany("MovieVotings")
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MovieDot.Core.Models.Voting", "Voting")
+                        .WithMany("MovieVotings")
+                        .HasForeignKey("VotingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Movie");
+
+                    b.Navigation("Voting");
+                });
+
             modelBuilder.Entity("MovieDot.Core.Models.Part", b =>
                 {
                     b.HasOne("MovieDot.Core.Models.Language", "Language")
@@ -705,7 +760,14 @@ namespace MovieDot.Repository.Migrations
 
                     b.Navigation("MovieGenres");
 
+                    b.Navigation("MovieVotings");
+
                     b.Navigation("Parts");
+                });
+
+            modelBuilder.Entity("MovieDot.Core.Models.Voting", b =>
+                {
+                    b.Navigation("MovieVotings");
                 });
 #pragma warning restore 612, 618
         }

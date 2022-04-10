@@ -7,6 +7,7 @@ using MovieDot.Core.DTOs.DtoLanguage;
 using MovieDot.Core.DTOs.DtoMovie;
 using MovieDot.Core.DTOs.DtoPart;
 using MovieDot.Core.DTOs.DtoUser;
+using MovieDot.Core.DTOs.DtoVoting;
 using MovieDot.Core.Models;
 
 namespace MovieDot.Service.Mapping
@@ -44,9 +45,7 @@ namespace MovieDot.Service.Mapping
             CreateMap<Movie, MovieWithAllDto>().ForMember(dto => dto.Categories, opt => opt.MapFrom(mc => mc.MovieCategories.Select(c => c.Category).ToList()))
                                               .ForMember(dto => dto.Actors, opt => opt.MapFrom(ma => ma.MovieActors.Select(a => a.Actor).ToList()))
                                               .ForMember(dto => dto.Genres, opt => opt.MapFrom(mg => mg.MovieGenres.Select(g => g.Genre).ToList()));
-            //CreateMap<Movie, MoviePostDto>().ForMember(dto => dto.Categories, opt => opt.MapFrom(mc => mc.MovieCategories.Select(c => c.Category).ToList()))
-                                            // .ForMember(dto => dto.Actors, opt => opt.MapFrom(ma => ma.MovieActors.Select(a => a.Actor).ToList()))
-                                            // .ForMember(dto => dto.Genres, opt => opt.MapFrom(mg => mg.MovieGenres.Select(g => g.Genre).ToList()));
+
 
 
         }

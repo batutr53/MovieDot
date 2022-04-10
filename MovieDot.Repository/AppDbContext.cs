@@ -22,7 +22,6 @@ namespace MovieDot.Repository
         public DbSet<MovieCategory> MovieCategories { get; set; }
         public DbSet<MovieGenre> MovieGenres { get; set; }
 
-       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
          

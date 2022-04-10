@@ -3,6 +3,7 @@ using MovieDot.Core.DTOs.DtoCategory;
 using MovieDot.Core.DTOs.DtoComment;
 using MovieDot.Core.DTOs.DtoGenre;
 using MovieDot.Core.DTOs.DtoPart;
+using MovieDot.Core.DTOs.DtoVoting;
 using MovieDot.Core.Models;
 using System;
 using System.Collections.Generic;

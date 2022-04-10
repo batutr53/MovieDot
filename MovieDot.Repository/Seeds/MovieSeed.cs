@@ -25,7 +25,6 @@ namespace MovieDot.Repository.Seeds
                     Url= "https://tr.web.img4.acsta.net/c_310_420/pictures/16/11/17/14/42/364666.jpg",
                     Year=2017,
                     Views=1222,
-                    Voting=345,
                     UserId=1
                 }
                 );
