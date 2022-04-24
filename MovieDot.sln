@@ -14,9 +14,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieDot.Shared", "MovieDot.Shared\MovieDot.Shared.csproj", "{7235A394-C6A6-43FE-BADE-D84E1FCD3A75}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{907CB752-196C-4345-AD69-E519EDD4285A}"
-	ProjectSection(SolutionItems) = preProject
-		Ports.txt = Ports.txt
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

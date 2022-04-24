@@ -18,17 +18,20 @@ namespace MovieDot.Service.Mapping
         {
             CreateMap<User, UserRegisterDto>().ReverseMap();
             CreateMap<User, UserAuthenticateDto>();
+            CreateMap<User, UserDto>().ReverseMap();
 
-            CreateMap<Category, CategoryDto>().ReverseMap();
+           
             CreateMap<Movie, MovieDto>();
             CreateMap<Movie, MovieSearchDto>();
             CreateMap<Movie, MoviePostDto>().ReverseMap();
+
             CreateMap<MovieActor, MovieActorDto>().ReverseMap();
             CreateMap<MovieGenre, MovieGenreDto>().ReverseMap();
             CreateMap<MovieCategory, MovieCategoryDto>().ReverseMap();
+
             CreateMap<Genre, GenreDto>().ReverseMap();
             CreateMap<Actor, ActorDto>().ReverseMap();
-            CreateMap<User, UserDto>();
+            CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<Language, LanguageDto>().ReverseMap();
             CreateMap<Part, PartDto>();
             CreateMap<Part, PartPostDto>().ReverseMap();
@@ -38,16 +41,12 @@ namespace MovieDot.Service.Mapping
             CreateMap<Comment, CommentUpdateDto>().ReverseMap();
 
 
-            CreateMap<MovieDto, MovieWithCategoryDto>().ReverseMap();
-            CreateMap<Movie, MovieWithCategoryDto>().ReverseMap();
             CreateMap<Movie, MovieWithCategoryDto>().ForMember(dto => dto.Category, opt => opt.MapFrom(x => x.MovieCategories.Select(y => y.Category).ToList()));
+            CreateMap<Movie, MovieWithGenreDto>().ForMember(dto => dto.Genre, opt => opt.MapFrom(x => x.MovieGenres.Select(y => y.Genre).ToList()));
 
             CreateMap<Movie, MovieWithAllDto>().ForMember(dto => dto.Categories, opt => opt.MapFrom(mc => mc.MovieCategories.Select(c => c.Category).ToList()))
                                               .ForMember(dto => dto.Actors, opt => opt.MapFrom(ma => ma.MovieActors.Select(a => a.Actor).ToList()))
                                               .ForMember(dto => dto.Genres, opt => opt.MapFrom(mg => mg.MovieGenres.Select(g => g.Genre).ToList()));
-
-
-
         }
     }
 }

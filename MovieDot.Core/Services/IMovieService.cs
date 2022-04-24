@@ -8,7 +8,10 @@ namespace MovieDot.Core.Services
     {
         Task<CustomResponseDto<List<MovieWithAllDto>>> GetAllMovie(int page,int pageSize);
         Task<CustomResponseDto<List<MovieWithCategoryDto>>> GetMovieWithCategory(int categoryId, int page, int pageSize);
+        Task<CustomResponseDto<List<MovieWithGenreDto>>> GetMovieWithGenre(int genreId, int page, int pageSize);
         Task<CustomResponseDto<List<MovieWithAllDto>>> GetMovieById(int movieId);
+        Task<CustomResponseDto<List<MovieWithAllDto>>> GetMovieByName(string movieUrl);
+        Task<CustomResponseDto<List<MovieDto>>> GetMoviePopular();
         Task<CustomResponseDto<List<MovieSearchDto>>> MovieSearch(string movieName);
     }
 }

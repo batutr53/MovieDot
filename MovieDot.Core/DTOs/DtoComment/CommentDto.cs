@@ -15,6 +15,7 @@ namespace MovieDot.Core.DTOs.DtoComment
         public int Liked { get; set; }
         public int MovieId { get; set; }
         public int UserId { get; set; }
+        public string UserName { get; set; }
 
     }
 }

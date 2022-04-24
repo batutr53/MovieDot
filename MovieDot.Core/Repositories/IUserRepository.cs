@@ -11,6 +11,7 @@ namespace MovieDot.Core.Repositories
     {
         Task<bool> IsUniqueUser(string mail);
         Task<User>Authenticate(string mail, string password);
+        Task<User> FindByEmail(string mail);
         Task<User> Register(string userName,string mail, string password);
     }
 }

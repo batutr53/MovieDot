@@ -30,6 +30,11 @@ namespace MovieDot.Service.Services
             return user;
         }
 
+        public async Task<User> FindByEmail(string mail)
+        {
+            return await _userRepository.FindByEmail(mail);
+        }
+
         public async Task<bool> IsUniqueUser(string mail)
         {
            return await _userRepository.IsUniqueUser(mail);

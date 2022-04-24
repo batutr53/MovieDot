@@ -25,6 +25,7 @@ namespace MovieDot.Core.DTOs.DtoMovie
         public int? Year { get; set; }
         public float? Imdb { get; set; }
         public int? Views { get; set; }
+        public string? Fragman { get; set; }
         public bool IsActive { get; set; }
         public bool? IsPopular { get; set; }
         public int UserId { get; set; }

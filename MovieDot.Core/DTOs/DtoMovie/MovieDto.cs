@@ -16,9 +16,11 @@ namespace MovieDot.Core.DTOs.DtoMovie
         public double Voting { get; set; }
         public int Views { get; set; }
         public int Year { get; set; }
+        public int Time { get; set; }
         public string Descr { get; set; }
         public bool IsPopular { get; set; }
         public bool IsActive { get; set; }
+        public string Fragman { get; set; }
         public DateTime CreatedDate { get; set; }
     }
 }

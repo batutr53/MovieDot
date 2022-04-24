@@ -28,10 +28,27 @@ namespace MovieDot.Repository.Repositories
                  .Include(mc => mc.MovieCategories).ThenInclude(c => c.Category)
                  .Include(ma => ma.MovieActors).ThenInclude(a => a.Actor)
                  .Include(mg => mg.MovieGenres).ThenInclude(g => g.Genre)
-                 .Include(c => c.Comments).ThenInclude(u => u.User)
+                 .Include(c => c.Comments).ThenInclude(u=>u.User)
                  .Include(p => p.Parts).ThenInclude(l => l.Language)
                  .AsNoTracking()
                  .ToListAsync(); 
+        }
+
+        public async Task<List<Movie>> GetMovieByName(string movieUrl)
+        {
+            return await _context.Movies.Where(x => x.Url == movieUrl)
+                   .Include(mc => mc.MovieCategories).ThenInclude(c => c.Category)
+                   .Include(ma => ma.MovieActors).ThenInclude(a => a.Actor)
+                   .Include(mg => mg.MovieGenres).ThenInclude(g => g.Genre)
+                   .Include(c => c.Comments).ThenInclude(u => u.User)
+                   .Include(p => p.Parts).ThenInclude(l => l.Language)
+                   .AsNoTracking()
+                   .ToListAsync();
+        }
+
+        public async Task<List<Movie>> GetMoviePopular()
+        {
+            return await _context.Movies.Where(x=>x.IsPopular).AsNoTracking().ToListAsync();
         }
 
         public async Task<List<Movie>> GetMovieWithCategory(int categoryId, int page, int pageSize)
@@ -42,6 +59,16 @@ namespace MovieDot.Repository.Repositories
                 .AsNoTracking().Skip((page - 1) * pageSize).Take(pageSize)
                 .ToListAsync();
             
+        }
+
+        public async Task<List<Movie>> GetMovieWithGenre(int genreId, int page, int pageSize)
+        {
+
+            return await _context.Movies.Where(c => c.MovieGenres.Where(ca => ca.GenreId == genreId).Any())
+                .Include(x => x.MovieGenres)
+                .ThenInclude(a => a.Genre)
+                .AsNoTracking().Skip((page - 1) * pageSize).Take(pageSize)
+                .ToListAsync();
         }
 
         public async Task<List<Movie>> MovieSearch(string movieName)

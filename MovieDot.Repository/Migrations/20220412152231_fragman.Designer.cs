@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieDot.Repository;
 
@@ -11,9 +12,10 @@ using MovieDot.Repository;
 namespace MovieDot.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220412152231_fragman")]
+    partial class fragman
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,7 +149,7 @@ namespace MovieDot.Repository.Migrations
                         {
                             Id = 1,
                             CText = "Çok güzel bir film.",
-                            CreatedDate = new DateTime(2022, 4, 12, 18, 24, 33, 927, DateTimeKind.Local).AddTicks(983),
+                            CreatedDate = new DateTime(2022, 4, 12, 18, 22, 30, 942, DateTimeKind.Local).AddTicks(7023),
                             Liked = 1234,
                             MovieId = 1,
                             UserId = 1
@@ -157,7 +159,7 @@ namespace MovieDot.Repository.Migrations
                             Id = 2,
                             CText = "Çok güzel bir film. Alt Yorum.",
                             CommentingId = 1,
-                            CreatedDate = new DateTime(2022, 4, 12, 18, 24, 33, 927, DateTimeKind.Local).AddTicks(991),
+                            CreatedDate = new DateTime(2022, 4, 12, 18, 22, 30, 942, DateTimeKind.Local).AddTicks(7033),
                             Liked = 5,
                             MovieId = 1,
                             UserId = 2
@@ -264,9 +266,6 @@ namespace MovieDot.Repository.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("Fragman")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -317,7 +316,7 @@ namespace MovieDot.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 4, 12, 18, 24, 33, 927, DateTimeKind.Local).AddTicks(1655),
+                            CreatedDate = new DateTime(2022, 4, 12, 18, 22, 30, 942, DateTimeKind.Local).AddTicks(7705),
                             Descr = "Uzay Yolcuları, Morten Tyldum tarafından yönetilen ve senaryosu Jon Spaihts tarafından yazılan 2016 yılı ABD yapımı bilimkurgu-macera filmi. Başrollerinde Chris Pratt ve Jennifer Lawrence yer almaktadır.",
                             Image = "https://tr.web.img3.acsta.net/pictures/16/11/17/14/42/364666.jpg",
                             Imdb = 6.0,
@@ -501,7 +500,7 @@ namespace MovieDot.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 4, 12, 18, 24, 33, 927, DateTimeKind.Local).AddTicks(1957),
+                            CreatedDate = new DateTime(2022, 4, 12, 18, 22, 30, 942, DateTimeKind.Local).AddTicks(8010),
                             Email = "batuhanturk34@gmail.com",
                             Image = "adminprofileimage",
                             IsActive = true,
@@ -512,7 +511,7 @@ namespace MovieDot.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 4, 12, 18, 24, 33, 927, DateTimeKind.Local).AddTicks(1961),
+                            CreatedDate = new DateTime(2022, 4, 12, 18, 22, 30, 942, DateTimeKind.Local).AddTicks(8015),
                             Email = "info@batulab.com",
                             Image = "infoprofileimage",
                             IsActive = true,

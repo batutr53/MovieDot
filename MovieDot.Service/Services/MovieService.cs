@@ -33,11 +33,32 @@ namespace MovieDot.Service.Services
             return CustomResponseDto<List<MovieWithAllDto>>.Success(200,moviesDto);
         }
 
+        public async Task<CustomResponseDto<List<MovieWithAllDto>>> GetMovieByName(string movieUrl)
+        {
+            var movies = await _movieRepository.GetMovieByName(movieUrl);
+            var moviesDto = _mapper.Map<List<MovieWithAllDto>>(movies);
+            return CustomResponseDto<List<MovieWithAllDto>>.Success(200, moviesDto);
+        }
+
+        public async Task<CustomResponseDto<List<MovieDto>>> GetMoviePopular()
+        {
+            var movies = await _movieRepository.GetMoviePopular();
+            var moviesDto = _mapper.Map<List<MovieDto>>(movies);
+            return CustomResponseDto<List<MovieDto>>.Success(200, moviesDto);
+        }
+
         public async Task<CustomResponseDto<List<MovieWithCategoryDto>>> GetMovieWithCategory(int categoryId, int page, int pageSize)
         {
             var movies = await _movieRepository.GetMovieWithCategory(categoryId, page, pageSize);
             var moviesDto = _mapper.Map<List<MovieWithCategoryDto>>(movies);
             return CustomResponseDto<List<MovieWithCategoryDto>>.Success(200, moviesDto);
+        }
+
+        public async Task<CustomResponseDto<List<MovieWithGenreDto>>> GetMovieWithGenre(int genreId, int page, int pageSize)
+        {
+            var movies = await _movieRepository.GetMovieWithGenre(genreId, page, pageSize);
+            var moviesDto = _mapper.Map<List<MovieWithGenreDto>>(movies);
+            return CustomResponseDto<List<MovieWithGenreDto>>.Success(200, moviesDto);
         }
 
         public async Task<CustomResponseDto<List<MovieSearchDto>>> MovieSearch(string movieName)

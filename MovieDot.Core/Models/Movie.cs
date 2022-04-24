@@ -18,6 +18,7 @@ namespace MovieDot.Core.Models
         public int? Views { get; set; }
         public bool IsPopular { get; set; }
         public bool IsActive { get; set; } = false;
+        public string? Fragman { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
         public List<Part> Parts { get; set; }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MovieDot.API.Filters;
@@ -22,8 +23,8 @@ namespace MovieDot.API.Controllers
 
             
         }
-        
-     
+
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> All()
         {

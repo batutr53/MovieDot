@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MovieDot.Core.DTOs.DtoUser;
 using MovieDot.Core.Models;
 using MovieDot.Core.Services;
+using System.Security.Claims;
 
 namespace MovieDot.API.Controllers
 {
@@ -24,7 +26,6 @@ namespace MovieDot.API.Controllers
             var users = await _userService.Authenticate(user.Email, user.Password);
             return Ok(users);
         }
-
         [HttpPost("[action]")]
         public async Task<IActionResult> Register(UserRegisterDto userRegister)
         {
@@ -34,10 +35,24 @@ namespace MovieDot.API.Controllers
                 return BadRequest(new { message = "Email zaten mevcut." });
             }
             var user = _userService.Register(userRegister.UserName, userRegister.Email, userRegister.Password);
-            var userDto = _mapper.Map<UserRegisterDto>(user);
 
-            return Ok(userDto);
+            return Ok(userRegister);
 
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<ActionResult<UserDto>> GetCurrentUser()
+        {
+
+            var email = HttpContext.User?.Claims?.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value;
+            var user =await _userService.FindByEmail(email);
+            return new UserDto 
+            { 
+                Email = user.Email,
+                UserName = user.UserName,
+                Image =user.Image
+            };
         }
 
     }

@@ -28,16 +28,28 @@ namespace MovieDot.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllMovie()
         {
-           int page = 1;
-            const int pageSize = 10;
-            return CreateActionResult(await _movieService.GetAllMovie(page,pageSize));
+            int page = 1;
+            const int pageSize = 20;
+            return CreateActionResult(await _movieService.GetAllMovie(page, pageSize));
         }
-       
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetMoviePopular()
+        {
+          
+            return CreateActionResult(await _movieService.GetMoviePopular());
+        }
+
         [HttpGet("category/{categoryId}")]
         public async Task<IActionResult> GetMovieWithCategory(int categoryId, int page)
         {
             const int pageSize = 10;
             return CreateActionResult(await _movieService.GetMovieWithCategory(categoryId, page, pageSize));
+        }
+        [HttpGet("genre/{genreId}")]
+        public async Task<IActionResult> GetMovieWithGenre(int genreId, int page)
+        {
+            const int pageSize = 10;
+            return CreateActionResult(await _movieService.GetMovieWithGenre(genreId, page, pageSize));
         }
 
         [HttpGet("{movieId}")]         
@@ -46,8 +58,14 @@ namespace MovieDot.API.Controllers
             return CreateActionResult(await _movieService.GetMovieById(movieId));
         }
 
-        [HttpGet("search")]
-        public async Task<IActionResult> MovieSearch(string movieName)
+        [HttpGet("Movie/{movieUrl}")]
+        public async Task<IActionResult> GetMovieByName(string movieUrl)
+        {
+            return CreateActionResult(await _movieService.GetMovieByName(movieUrl));
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> Search(string movieName)
         {
             return CreateActionResult(await _movieService.MovieSearch(movieName));
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using MovieDot.Core.Models;
 using MovieDot.Core.Repositories;
@@ -33,7 +34,7 @@ namespace MovieDot.Repository.Repositories
             {
                 Subject = new ClaimsIdentity(new Claim[]
                     {
-                         new Claim(ClaimTypes.Name,user.Id.ToString()),
+                         new Claim(ClaimTypes.Email,user.Email),
                          new Claim(ClaimTypes.Role,user.UserRoleId.ToString())
                     }),
                 Expires = DateTime.UtcNow.AddDays(5),
@@ -45,12 +46,20 @@ namespace MovieDot.Repository.Repositories
             var token = tokenHandler.CreateToken(tokendDescriptor);
             user.Token = tokenHandler.WriteToken(token);
             user.Password = "";
+            
+            return user;
+        }
+
+        public async Task<User> FindByEmail(string mail)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == mail);
+          
             return user;
         }
 
         public async Task<bool> IsUniqueUser(string mail)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Email == mail);
+            var user = await _context.Users.FirstOrDefaultAsync(x=>x.Email == mail);
             if (user == null)
             {
                 return true;
