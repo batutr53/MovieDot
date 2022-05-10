@@ -24,7 +24,7 @@ namespace MovieDot.API.Controllers
             
         }
 
-        [Authorize]
+       
         [HttpGet]
         public async Task<IActionResult> All()
         {

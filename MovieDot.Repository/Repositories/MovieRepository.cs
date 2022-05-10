@@ -17,7 +17,7 @@ namespace MovieDot.Repository.Repositories
                  .Include(ma => ma.MovieActors).ThenInclude(a => a.Actor)
                  .Include(mg => mg.MovieGenres).ThenInclude(g => g.Genre)
                  .Include(c => c.Comments).ThenInclude(u => u.User)
-                 .Include(p => p.Parts).ThenInclude(l => l.Language)
+                 .Include(p => p.Parts).ThenInclude(l => l.Language).OrderByDescending(x=>x.CreatedDate)
                  .AsNoTracking().Skip((page - 1)*pageSize).Take(pageSize)
                  .ToListAsync();
         }
@@ -48,7 +48,7 @@ namespace MovieDot.Repository.Repositories
 
         public async Task<List<Movie>> GetMoviePopular()
         {
-            return await _context.Movies.Where(x=>x.IsPopular).AsNoTracking().ToListAsync();
+            return await _context.Movies.Where(x=>x.IsPopular).OrderByDescending(x=>x.CreatedDate).AsNoTracking().ToListAsync();
         }
 
         public async Task<List<Movie>> GetMovieWithCategory(int categoryId, int page, int pageSize)

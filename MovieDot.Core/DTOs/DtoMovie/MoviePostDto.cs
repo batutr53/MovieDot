@@ -21,7 +21,6 @@ namespace MovieDot.Core.DTOs.DtoMovie
         public string Descr { get; set; }
         public string Image { get; set; }
         public int? Time { get; set; }
-        public float? Voting { get; set; } 
         public int? Year { get; set; }
         public float? Imdb { get; set; }
         public int? Views { get; set; }
@@ -30,10 +29,10 @@ namespace MovieDot.Core.DTOs.DtoMovie
         public bool? IsPopular { get; set; }
         public int UserId { get; set; }
 
-        public List<PartPostDto> Parts { get; set; } = new();
-        public List<MovieCategoryDto> MovieCategories { get; set; } = new();
-        public List<MovieActorDto> MovieActors { get; set; } = new();
-        public List<MovieGenreDto> MovieGenres { get; set; } = new();
+        public ICollection<PartPostDto> Parts { get; set; }
+        public ICollection<MovieCategoryDto> MovieCategories { get; set; }
+        public ICollection<MovieActorDto> MovieActors { get; set; } 
+        public ICollection<MovieGenreDto> MovieGenres { get; set; } 
     
     }
 }

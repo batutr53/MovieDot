@@ -71,8 +71,9 @@ namespace MovieDot.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostMovie(MoviePostDto movieDto)
+        public async Task<IActionResult> PostMovie([FromBody] MoviePostDto movieDto)
         {
+          
             var movie = await _movieService.AddAsync(_mapper.Map<Movie>(movieDto));
             var movieDtos= _mapper.Map<MoviePostDto>(movie);
             return CreateActionResult(CustomResponseDto<MoviePostDto>.Success(204,movieDtos));
