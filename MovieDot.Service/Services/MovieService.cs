@@ -33,9 +33,9 @@ namespace MovieDot.Service.Services
             return CustomResponseDto<List<MovieWithAllDto>>.Success(200,moviesDto);
         }
 
-        public async Task<CustomResponseDto<List<MovieWithAllDto>>> GetMovieByName(string movieUrl)
+        public async Task<CustomResponseDto<List<MovieWithAllDto>>> GetMovieByName(string movieUrl,int? part)
         {
-            var movies = await _movieRepository.GetMovieByName(movieUrl);
+            var movies = await _movieRepository.GetMovieByName(movieUrl,part);
             var moviesDto = _mapper.Map<List<MovieWithAllDto>>(movies);
             return CustomResponseDto<List<MovieWithAllDto>>.Success(200, moviesDto);
         }

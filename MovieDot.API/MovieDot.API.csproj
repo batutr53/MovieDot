@@ -23,4 +23,9 @@
     <ProjectReference Include="..\MovieDot.Shared\MovieDot.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Images\0afcae35-e65f-44d2-8618-6debf859e3b1.jpg" />
+    <None Include="wwwroot\Images\61dd5775-7380-414c-bb2a-385ee77c7bce.jpg" />
+  </ItemGroup>
+
 </Project>

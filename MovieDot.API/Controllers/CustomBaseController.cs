@@ -11,6 +11,7 @@ namespace MovieDot.API.Controllers
         [NonAction]
         public IActionResult CreateActionResult<T>(CustomResponseDto<T> response)
         {
+          
             if (response.StatusCode == 204)//nocontent
 
                 return new ObjectResult(null)

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieDot.Repository;
 
@@ -11,9 +12,10 @@ using MovieDot.Repository;
 namespace MovieDot.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220512220149_asd")]
+    partial class asd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -116,7 +118,7 @@ namespace MovieDot.Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("Liked")
@@ -147,10 +149,9 @@ namespace MovieDot.Repository.Migrations
                         {
                             Id = 1,
                             CText = "Çok güzel bir film.",
-                            CreatedDate = new DateTime(2022, 5, 13, 16, 54, 27, 7, DateTimeKind.Local).AddTicks(1860),
+                            CreatedDate = new DateTime(2022, 5, 13, 1, 1, 49, 84, DateTimeKind.Local).AddTicks(1099),
                             Liked = 1234,
                             MovieId = 1,
-                            UpdatedDate = new DateTime(2022, 5, 13, 16, 54, 27, 7, DateTimeKind.Local).AddTicks(1868),
                             UserId = 1
                         },
                         new
@@ -158,10 +159,9 @@ namespace MovieDot.Repository.Migrations
                             Id = 2,
                             CText = "Çok güzel bir film. Alt Yorum.",
                             CommentingId = 1,
-                            CreatedDate = new DateTime(2022, 5, 13, 16, 54, 27, 7, DateTimeKind.Local).AddTicks(1872),
+                            CreatedDate = new DateTime(2022, 5, 13, 1, 1, 49, 84, DateTimeKind.Local).AddTicks(1114),
                             Liked = 5,
                             MovieId = 1,
-                            UpdatedDate = new DateTime(2022, 5, 13, 16, 54, 27, 7, DateTimeKind.Local).AddTicks(1873),
                             UserId = 2
                         });
                 });
@@ -258,7 +258,7 @@ namespace MovieDot.Repository.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("CreatedDate")
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Descr")
@@ -319,7 +319,7 @@ namespace MovieDot.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 5, 13, 16, 54, 27, 7, DateTimeKind.Local).AddTicks(2496),
+                            CreatedDate = new DateTime(2022, 5, 13, 1, 1, 49, 84, DateTimeKind.Local).AddTicks(1960),
                             Descr = "Uzay Yolcuları, Morten Tyldum tarafından yönetilen ve senaryosu Jon Spaihts tarafından yazılan 2016 yılı ABD yapımı bilimkurgu-macera filmi. Başrollerinde Chris Pratt ve Jennifer Lawrence yer almaktadır.",
                             Image = "https://tr.web.img3.acsta.net/pictures/16/11/17/14/42/364666.jpg",
                             Imdb = 6.0,
@@ -327,7 +327,6 @@ namespace MovieDot.Repository.Migrations
                             IsPopular = false,
                             Time = 155,
                             Title = "Uzay Yolcuları",
-                            UpdatedDate = new DateTime(2022, 5, 13, 16, 54, 27, 7, DateTimeKind.Local).AddTicks(2497),
                             Url = "https://tr.web.img4.acsta.net/c_310_420/pictures/16/11/17/14/42/364666.jpg",
                             UserId = 1,
                             Views = 1222,
@@ -504,7 +503,7 @@ namespace MovieDot.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 5, 13, 16, 54, 27, 7, DateTimeKind.Local).AddTicks(2785),
+                            CreatedDate = new DateTime(2022, 5, 13, 1, 1, 49, 84, DateTimeKind.Local).AddTicks(2394),
                             Email = "batuhanturk34@gmail.com",
                             Image = "adminprofileimage",
                             IsActive = true,
@@ -515,7 +514,7 @@ namespace MovieDot.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 5, 13, 16, 54, 27, 7, DateTimeKind.Local).AddTicks(2789),
+                            CreatedDate = new DateTime(2022, 5, 13, 1, 1, 49, 84, DateTimeKind.Local).AddTicks(2398),
                             Email = "info@batulab.com",
                             Image = "infoprofileimage",
                             IsActive = true,

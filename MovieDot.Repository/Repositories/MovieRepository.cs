@@ -34,8 +34,20 @@ namespace MovieDot.Repository.Repositories
                  .ToListAsync(); 
         }
 
-        public async Task<List<Movie>> GetMovieByName(string movieUrl)
+        public async Task<List<Movie>> GetMovieByName(string movieUrl,int? part)
         {
+
+            if (part != null)
+            {
+                return await _context.Movies.Where(x => x.Url == movieUrl)
+             .Include(mc => mc.MovieCategories).ThenInclude(c => c.Category)
+             .Include(ma => ma.MovieActors).ThenInclude(a => a.Actor)
+             .Include(mg => mg.MovieGenres).ThenInclude(g => g.Genre)
+             .Include(c => c.Comments).ThenInclude(u => u.User)
+             .Include(p => p.Parts.Where(a => a.Id == part)).ThenInclude(l => l.Language)
+             .AsNoTracking()
+             .ToListAsync();
+            }
             return await _context.Movies.Where(x => x.Url == movieUrl)
                    .Include(mc => mc.MovieCategories).ThenInclude(c => c.Category)
                    .Include(ma => ma.MovieActors).ThenInclude(a => a.Actor)

@@ -17,7 +17,7 @@ namespace MovieDot.Core.Models
         public double? Imdb { get; set; }
         public int? Views { get; set; }
         public bool IsPopular { get; set; }
-        public bool IsActive { get; set; } = false;
+        public bool IsActive { get; set; }
         public string? Fragman { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }

@@ -13,6 +13,7 @@ namespace MovieDot.Repository.Configurations
     {
         public void Configure(EntityTypeBuilder<Part> builder)
         {
+           
             builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
             builder.Property(x => x.Url).IsRequired().HasMaxLength(int.MaxValue);
         }

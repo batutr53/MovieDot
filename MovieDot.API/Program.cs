@@ -92,6 +92,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCustomException();
 app.UseCors(MyAllowSpecificOrigins);
+app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
 

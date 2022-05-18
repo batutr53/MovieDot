@@ -9,6 +9,7 @@ using MovieDot.Core.DTOs.DtoPart;
 using MovieDot.Core.DTOs.DtoUser;
 using MovieDot.Core.DTOs.DtoVoting;
 using MovieDot.Core.Models;
+using MovieDot.Service.Helper;
 
 namespace MovieDot.Service.Mapping
 {
@@ -20,7 +21,7 @@ namespace MovieDot.Service.Mapping
             CreateMap<User, UserAuthenticateDto>();
             CreateMap<User, UserDto>().ReverseMap();
 
-           
+
             CreateMap<Movie, MovieDto>();
             CreateMap<Movie, MovieSearchDto>();
             CreateMap<Movie, MoviePostDto>().ReverseMap();
@@ -46,7 +47,8 @@ namespace MovieDot.Service.Mapping
 
             CreateMap<Movie, MovieWithAllDto>().ForMember(dto => dto.Categories, opt => opt.MapFrom(mc => mc.MovieCategories.Select(c => c.Category).ToList()))
                                               .ForMember(dto => dto.Actors, opt => opt.MapFrom(ma => ma.MovieActors.Select(a => a.Actor).ToList()))
-                                              .ForMember(dto => dto.Genres, opt => opt.MapFrom(mg => mg.MovieGenres.Select(g => g.Genre).ToList()));
+                                              .ForMember(dto => dto.Genres, opt => opt.MapFrom(mg => mg.MovieGenres.Select(g => g.Genre).ToList()))
+                                              .ForMember(a => a.Image, b => b.MapFrom<MovieUrlResolver>());
         }
     }
 }

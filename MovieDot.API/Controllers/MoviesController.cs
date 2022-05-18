@@ -18,11 +18,14 @@ namespace MovieDot.API.Controllers
         private readonly IMovieService _movieService;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
-        public MoviesController(IMovieService movieService, IMapper mapper, IUnitOfWork unitOfWork)
+        private readonly IWebHostEnvironment hostEnvironment;
+
+        public MoviesController(IMovieService movieService, IMapper mapper, IUnitOfWork unitOfWork,IWebHostEnvironment hostEnvironment)
         {
             _movieService = movieService;
             _mapper = mapper;
             _unitOfWork = unitOfWork;
+            this.hostEnvironment = hostEnvironment;
         }
 
         [HttpGet]
@@ -32,10 +35,11 @@ namespace MovieDot.API.Controllers
             const int pageSize = 20;
             return CreateActionResult(await _movieService.GetAllMovie(page, pageSize));
         }
+        [Authorize]
         [HttpGet("[action]")]
         public async Task<IActionResult> GetMoviePopular()
         {
-          
+
             return CreateActionResult(await _movieService.GetMoviePopular());
         }
 
@@ -52,16 +56,16 @@ namespace MovieDot.API.Controllers
             return CreateActionResult(await _movieService.GetMovieWithGenre(genreId, page, pageSize));
         }
 
-        [HttpGet("{movieId}")]         
+        [HttpGet("{movieId}")]
         public async Task<IActionResult> GetMovieById(int movieId)
         {
             return CreateActionResult(await _movieService.GetMovieById(movieId));
         }
 
         [HttpGet("Movie/{movieUrl}")]
-        public async Task<IActionResult> GetMovieByName(string movieUrl)
+        public async Task<IActionResult> GetMovieByName(string movieUrl, int? part)
         {
-            return CreateActionResult(await _movieService.GetMovieByName(movieUrl));
+            return CreateActionResult(await _movieService.GetMovieByName(movieUrl, part));
         }
 
         [HttpGet("[action]")]
@@ -70,15 +74,30 @@ namespace MovieDot.API.Controllers
             return CreateActionResult(await _movieService.MovieSearch(movieName));
         }
 
+
         [HttpPost]
-        public async Task<IActionResult> PostMovie([FromBody] MoviePostDto movieDto)
+        public async Task<IActionResult> PostMovie(MoviePostDto movieDto)
         {
-          
+            movieDto.Image = await SaveImage(movieDto.ImageFile);
             var movie = await _movieService.AddAsync(_mapper.Map<Movie>(movieDto));
-            var movieDtos= _mapper.Map<MoviePostDto>(movie);
-            return CreateActionResult(CustomResponseDto<MoviePostDto>.Success(204,movieDtos));
+            var movieDtos = _mapper.Map<MoviePostDto>(movie);
+            return CreateActionResult(CustomResponseDto<MoviePostDto>.Success(204, movieDtos));
         }
 
+        [NonAction]
+        public async Task<string> SaveImage(IFormFile file)
+        {
+             var extention = Path.GetExtension(file.FileName).ToLower();
+                var randomName = string.Format($"{Guid.NewGuid()}{extention}");
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "Resources\\Images", randomName);
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+            return randomName;
+        }
+       
         [HttpPut]
         public async Task<IActionResult> Update(MoviePostDto movieUpdateDto)
         {
